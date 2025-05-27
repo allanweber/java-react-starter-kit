@@ -1,0 +1,17 @@
+{
+  "name": "starter-kit",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "generate-clients": "./scripts/generate-clients.sh"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "husky": "^8.0.0"
+  }
+} 
