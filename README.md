@@ -19,10 +19,18 @@ A modern full-stack application template with TypeScript, Spring Boot, and Postg
 
 ## Prerequisites
 
+### Required Software
 - Node.js 18+
-- Java 17+
+- Java 21+
 - Docker and Docker Compose
 - Maven
+
+### Global NPM Packages
+The following packages need to be installed globally:
+```bash
+# Install OpenAPI TypeScript Code Generator
+npm install -g openapi-typescript-codegen
+```
 
 ## Getting Started
 

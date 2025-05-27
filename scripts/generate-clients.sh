@@ -11,14 +11,17 @@ if ! curl -s http://localhost:8080/actuator/health > /dev/null; then
     exit 1
 fi
 
+# Get the absolute path to the project root
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 # Create output directory if it doesn't exist
-mkdir -p frontend/src/api
+mkdir -p "$PROJECT_ROOT/frontend/src/api"
 
 # Generate TypeScript client using the same configuration as frontend
 echo "🔨 Generating TypeScript client..."
-cd frontend && npx openapi-typescript-codegen \
+cd "$PROJECT_ROOT/frontend" && npx openapi-typescript-codegen \
     --input http://localhost:8080/api-docs \
-    --output src/api \
+    --output "$PROJECT_ROOT/frontend/src/api" \
     --client fetch \
     --useOptions \
     --useUnionTypes \
