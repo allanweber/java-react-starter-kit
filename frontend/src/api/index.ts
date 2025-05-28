@@ -7,9 +7,8 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { UserDTO } from './models/UserDTO';
+export type { GreetingResponse } from './models/GreetingResponse';
 
-export { $UserDTO } from './schemas/$UserDTO';
+export { $GreetingResponse } from './schemas/$GreetingResponse';
 
 export { HelloControllerService } from './services/HelloControllerService';
-export { UserControllerService } from './services/UserControllerService';

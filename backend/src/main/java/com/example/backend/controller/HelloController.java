@@ -16,7 +16,10 @@ public class HelloController {
     @GetMapping("/hello")
     @Operation(summary = "Get a greeting", description = "Returns a simple greeting message")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved greeting")
-    public String hello() {
-        return "Hello, World!";
+    public GreetingResponse hello() {
+        return new GreetingResponse("Hello, World!");
+    }
+
+    public record GreetingResponse(String message) {
     }
 }

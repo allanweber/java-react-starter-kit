@@ -5,14 +5,15 @@
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import type { GreetingResponse } from '../models/GreetingResponse';
 export class HelloControllerService {
   /**
    * Get a greeting
    * Returns a simple greeting message
-   * @returns string Successfully retrieved greeting
+   * @returns GreetingResponse Successfully retrieved greeting
    * @throws ApiError
    */
-  public static hello(): CancelablePromise<string> {
+  public static hello(): CancelablePromise<GreetingResponse> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/hello',

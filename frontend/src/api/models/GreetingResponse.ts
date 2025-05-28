@@ -2,9 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UserDTO = {
-  id?: number;
-  name?: string;
-  email?: string;
+export type GreetingResponse = {
+  message?: string;
 };
 

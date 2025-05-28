@@ -2,16 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $UserDTO = {
+export const $GreetingResponse = {
   properties: {
-    id: {
-      type: 'number',
-      format: 'int64',
-    },
-    name: {
-      type: 'string',
-    },
-    email: {
+    message: {
       type: 'string',
     },
   },
