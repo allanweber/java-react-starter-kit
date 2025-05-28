@@ -23,6 +23,11 @@ This is the backend project for the starter kit, built with Spring Boot, JPA, an
 3. Run the application:
    ```
    mvn spring-boot:run
+
+   or
+
+   ```
+   mvn spring-boot:run -Dspring-boot.run.profiles=local
    ```
 
 4. Access the OpenAPI documentation:
