@@ -1,26 +1,10 @@
-import { HelloControllerService } from '@/api/services/HelloControllerService'
 import { Button } from '@/components/ui/button'
+import { useHello } from '@/services/helloService'
 import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
-import { toast, Toaster } from 'sonner'
+import { Toaster } from 'sonner'
 
 export const Dashboard = () => {
-  const [greeting, setGreeting] = useState<string>('')
-
-  const handleHello = async () => {
-    try {
-      const response = await HelloControllerService.hello()
-      if (response?.message) {
-        setGreeting(response.message)
-        toast.success('Greeting received!')
-      } else {
-        throw new Error('Invalid response format')
-      }
-    } catch (error) {
-      toast.error('Failed to get greeting')
-      console.error(error)
-    }
-  }
+  const { data: greeting, isLoading } = useHello()
 
   return (
     <div className='min-h-screen bg-gray-100'>
@@ -38,9 +22,12 @@ export const Dashboard = () => {
       <div className='flex'>
         <main className='flex-1 p-4'>
           <div className='mb-8'>
-            <Button onClick={handleHello}>Get Greeting</Button>
-            {greeting && (
-              <p className='mt-4 text-lg text-gray-700'>{greeting}</p>
+            {isLoading ? (
+              <p className='text-lg text-gray-700'>Loading greeting...</p>
+            ) : greeting?.message ? (
+              <p className='text-lg text-gray-700'>{greeting.message}</p>
+            ) : (
+              <p className='text-lg text-gray-700'>No greeting available</p>
             )}
           </div>
         </main>

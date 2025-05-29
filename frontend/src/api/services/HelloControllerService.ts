@@ -2,10 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { GreetingResponse } from '../models/GreetingResponse';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-import type { GreetingResponse } from '../models/GreetingResponse';
 export class HelloControllerService {
   /**
    * Get a greeting
@@ -17,6 +17,9 @@ export class HelloControllerService {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/hello',
+      errors: {
+        500: `Internal server error`,
+      },
     });
   }
 }
