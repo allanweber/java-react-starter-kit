@@ -81,10 +81,40 @@ An AI-powered diet planning application that provides personalized meal suggesti
 CREATE TABLE users (
     id UUID PRIMARY KEY,
     email VARCHAR(255) UNIQUE,
-    password_hash VARCHAR(255),
+    password_hash VARCHAR(255),  -- Optional for OAuth users
     name VARCHAR(100),
+    email_verified TIMESTAMP,    -- Track email verification
+    image_url VARCHAR(255),      -- Profile picture
     created_at TIMESTAMP,
-    last_login TIMESTAMP
+    updated_at TIMESTAMP
+);
+
+-- OAuth Accounts
+CREATE TABLE oauth_accounts (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    provider VARCHAR(50),        -- e.g., 'google', 'github', 'twitter'
+    provider_account_id VARCHAR(255),
+    refresh_token TEXT,
+    access_token TEXT,
+    expires_at TIMESTAMP,
+    token_type VARCHAR(50),
+    scope VARCHAR(255),
+    id_token TEXT,
+    session_state VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    UNIQUE(provider, provider_account_id)
+);
+
+-- Sessions
+CREATE TABLE sessions (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    session_token VARCHAR(255) UNIQUE,
+    expires_at TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
 );
 
 -- User Preferences
