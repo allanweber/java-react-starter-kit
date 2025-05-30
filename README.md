@@ -268,3 +268,30 @@ Hooks include:
 ## License
 
 MIT 
+
+## Database Migrations
+
+### Migration Files
+- `V1__create_foods_table.sql`: Creates the initial foods table
+
+### How Migrations Work
+1. Migrations are automatically applied when the application starts
+2. Flyway tracks executed migrations in `flyway_schema_history` table
+3. Each migration runs only once
+
+### Handling Rollbacks
+Flyway doesn't support automatic rollbacks. Instead, follow these practices:
+
+1. **Create a new migration** to revert changes:
+   - Create a new file with a higher version number (e.g., `V2__revert_foods_table.sql`)
+   - Include the necessary SQL to revert the changes
+
+2. **Manual rollback** (if needed):
+```bash
+# Drop the table manually
+psql -h localhost -U postgres -d mydatabase -c "DROP TABLE IF EXISTS foods;"
+# Clean Flyway's history
+psql -h localhost -U postgres -d mydatabase -c "DELETE FROM flyway_schema_history WHERE version = '1';"
+```
+
+Note: Always backup your database before applying any changes in production. 

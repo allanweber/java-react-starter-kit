@@ -7,8 +7,21 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { Food } from './models/Food';
+export type { FoodRequest } from './models/FoodRequest';
 export type { GreetingResponse } from './models/GreetingResponse';
+export type { Pageable } from './models/Pageable';
+export type { PageableObject } from './models/PageableObject';
+export type { PageFood } from './models/PageFood';
+export type { SortObject } from './models/SortObject';
 
+export { $Food } from './schemas/$Food';
+export { $FoodRequest } from './schemas/$FoodRequest';
 export { $GreetingResponse } from './schemas/$GreetingResponse';
+export { $Pageable } from './schemas/$Pageable';
+export { $PageableObject } from './schemas/$PageableObject';
+export { $PageFood } from './schemas/$PageFood';
+export { $SortObject } from './schemas/$SortObject';
 
+export { FoodsService } from './services/FoodsService';
 export { HelloControllerService } from './services/HelloControllerService';
