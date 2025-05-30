@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -36,42 +36,42 @@ public class Food {
     private String description;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "calories_per_100g", precision = 10, scale = 2)
     private BigDecimal caloriesPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "protein_per_100g", precision = 10, scale = 2)
     private BigDecimal proteinPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "carbs_per_100g", precision = 10, scale = 2)
     private BigDecimal carbsPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "fats_per_100g", precision = 10, scale = 2)
     private BigDecimal fatsPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "fiber_per_100g", precision = 10, scale = 2)
     private BigDecimal fiberPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "sugar_per_100g", precision = 10, scale = 2)
     private BigDecimal sugarPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "sodium_per_100g", precision = 10, scale = 2)
     private BigDecimal sodiumPer100g;
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     @Column(name = "serving_size_g", precision = 10, scale = 2)
     private BigDecimal servingSizeG;
 
