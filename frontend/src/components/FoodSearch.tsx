@@ -58,7 +58,7 @@ export function FoodSearch({ onFoodSelect }: FoodSearchProps) {
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {showLoading && (
-          <div className="absolute right-3 top-2">
+          <div className="absolute right-3 top-2" data-testid="loading-spinner">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
           </div>
         )}

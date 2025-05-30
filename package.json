@@ -12,6 +12,8 @@
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
+    "@types/cypress": "^1.1.6",
+    "cypress": "^14.4.0",
     "husky": "^8.0.0"
   }
-} 
+}
