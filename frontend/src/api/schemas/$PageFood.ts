@@ -32,15 +32,15 @@ export const $PageFood = {
     sort: {
       type: 'SortObject',
     },
-    numberOfElements: {
-      type: 'number',
-      format: 'int32',
-    },
     first: {
       type: 'boolean',
     },
     last: {
       type: 'boolean',
+    },
+    numberOfElements: {
+      type: 'number',
+      format: 'int32',
     },
     empty: {
       type: 'boolean',

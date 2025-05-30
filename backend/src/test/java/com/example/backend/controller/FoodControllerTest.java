@@ -119,6 +119,106 @@ class FoodControllerTest {
                 .andExpect(jsonPath("$.length()").value(2));
     }
 
+    @Test
+    void shouldSearchFoods() throws Exception {
+        // Given
+        createAndSaveFood();
+        Food banana = createAndSaveFood();
+        banana.setName("Banana");
+        banana.setDescription("Ripe banana");
+        foodRepository.save(banana);
+
+        // When/Then
+        mockMvc.perform(get("/api/v1/foods/search")
+                .param("query", "apple")
+                .param("page", "0")
+                .param("size", "10")
+                .param("sortBy", "name")
+                .param("direction", "asc"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(1))
+                .andExpect(jsonPath("$.content[0].name").value("Apple"));
+    }
+
+    @Test
+    void shouldSearchFoodsWithPagination() throws Exception {
+        // Given
+        createAndSaveFood();
+        Food banana = createAndSaveFood();
+        banana.setName("Banana");
+        banana.setDescription("Ripe banana");
+        foodRepository.save(banana);
+        Food orange = createAndSaveFood();
+        orange.setName("Orange");
+        orange.setDescription("Fresh orange");
+        foodRepository.save(orange);
+
+        // When/Then
+        mockMvc.perform(get("/api/v1/foods/search")
+                .param("query", "")
+                .param("page", "0")
+                .param("size", "2")
+                .param("sortBy", "name")
+                .param("direction", "asc"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.totalElements").value(3))
+                .andExpect(jsonPath("$.totalPages").value(2));
+    }
+
+    @Test
+    void shouldSearchFoodsWithSorting() throws Exception {
+        // Given
+        createAndSaveFood();
+        Food banana = createAndSaveFood();
+        banana.setName("Banana");
+        banana.setDescription("Ripe banana");
+        foodRepository.save(banana);
+        Food orange = createAndSaveFood();
+        orange.setName("Orange");
+        orange.setDescription("Fresh orange");
+        foodRepository.save(orange);
+
+        // When/Then
+        mockMvc.perform(get("/api/v1/foods/search")
+                .param("query", "")
+                .param("page", "0")
+                .param("size", "10")
+                .param("sortBy", "name")
+                .param("direction", "desc"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(3))
+                .andExpect(jsonPath("$.content[0].name").value("Orange"))
+                .andExpect(jsonPath("$.content[1].name").value("Banana"))
+                .andExpect(jsonPath("$.content[2].name").value("Apple"));
+    }
+
+    @Test
+    void shouldReturnEmptyPageWhenNoMatches() throws Exception {
+        // Given
+        createAndSaveFood();
+        Food banana = createAndSaveFood();
+        banana.setName("Banana");
+        banana.setDescription("Ripe banana");
+        foodRepository.save(banana);
+
+        // When/Then
+        mockMvc.perform(get("/api/v1/foods/search")
+                .param("query", "orange")
+                .param("page", "0")
+                .param("size", "10")
+                .param("sortBy", "name")
+                .param("direction", "asc"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(0))
+                .andExpect(jsonPath("$.totalElements").value(0))
+                .andExpect(jsonPath("$.totalPages").value(0));
+    }
+
     private FoodRequest createFoodRequest() {
         FoodRequest request = new FoodRequest();
         request.setName("Apple");

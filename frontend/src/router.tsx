@@ -5,7 +5,7 @@ import {
   Outlet
 } from '@tanstack/react-router'
 import { About } from './pages/About'
-import { Dashboard } from './pages/Dashboard'
+import { FoodSearchPage } from './pages/FoodSearchPage'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -18,7 +18,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: Dashboard
+  component: FoodSearchPage
 })
 
 const aboutRoute = createRoute({

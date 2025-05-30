@@ -97,6 +97,36 @@ export class FoodsService {
     });
   }
   /**
+   * Search foods by name or description
+   * @returns PageFood OK
+   * @throws ApiError
+   */
+  public static searchFoods({
+    query,
+    page,
+    size = 10,
+    sortBy = 'name',
+    direction = 'asc',
+  }: {
+    query: string,
+    page?: number,
+    size?: number,
+    sortBy?: string,
+    direction?: string,
+  }): CancelablePromise<PageFood> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/api/v1/foods/search',
+      query: {
+        'query': query,
+        'page': page,
+        'size': size,
+        'sortBy': sortBy,
+        'direction': direction,
+      },
+    });
+  }
+  /**
    * Get all foods with pagination
    * @returns PageFood OK
    * @throws ApiError
