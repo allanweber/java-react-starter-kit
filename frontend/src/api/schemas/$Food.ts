@@ -60,5 +60,9 @@ export const $Food = {
       type: 'string',
       format: 'date-time',
     },
+    image_url: {
+      type: 'string',
+      maxLength: 255,
+    },
   },
 } as const;

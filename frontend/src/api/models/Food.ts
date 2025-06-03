@@ -17,5 +17,6 @@ export type Food = {
   servingSizeUnit?: string;
   createdAt?: string;
   updatedAt?: string;
+  image_url?: string;
 };
 
