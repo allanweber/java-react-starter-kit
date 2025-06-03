@@ -141,6 +141,7 @@ class FoodRepositoryTest {
         food.setSodiumPer100g(new BigDecimal("1"));
         food.setServingSizeG(new BigDecimal("100"));
         food.setServingSizeUnit("g");
+        food.setImageUrl("https://example.com/image.jpg");
         return food;
     }
 }

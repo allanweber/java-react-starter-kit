@@ -1,5 +1,5 @@
 -- Foods (Base nutritional information)
-CREATE TABLE foods (
+CREATE TABLE IF NOT EXISTS foods (
     id UUID PRIMARY KEY,
     name VARCHAR(255),
     description TEXT,
@@ -12,6 +12,7 @@ CREATE TABLE foods (
     sodium_per_100g DECIMAL,
     serving_size_g DECIMAL,
     serving_size_unit VARCHAR(50),
+    image_url VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 ); 
