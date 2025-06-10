@@ -1,4 +1,4 @@
-package com.example.backend.repository;
+package com.example.backend.food.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.example.backend.config.TestContainersConfig;
-import com.example.backend.entity.Food;
+import com.example.backend.food.entity.Food;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

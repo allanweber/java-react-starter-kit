@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.food.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -21,9 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.example.backend.config.TestContainersConfig;
-import com.example.backend.dto.FoodRequest;
-import com.example.backend.entity.Food;
-import com.example.backend.repository.FoodRepository;
+import com.example.backend.food.entity.Food;
+import com.example.backend.food.repository.FoodRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest

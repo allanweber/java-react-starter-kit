@@ -1,4 +1,4 @@
-package com.example.backend.entity;
+package com.example.backend.food.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

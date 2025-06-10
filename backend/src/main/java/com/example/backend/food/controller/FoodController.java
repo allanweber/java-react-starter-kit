@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.food.controller;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.FoodMapper;
-import com.example.backend.dto.FoodRequest;
-import com.example.backend.entity.Food;
-import com.example.backend.repository.FoodRepository;
+import com.example.backend.food.entity.Food;
+import com.example.backend.food.repository.FoodRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

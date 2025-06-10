@@ -22,7 +22,12 @@ A modern full-stack application template with TypeScript, Spring Boot, and Postg
   - Implement role-based access control (RBAC)
   - Add password encryption with BCrypt
   - Configure session fixation protection
-  - Add concurrent session control
+  - OAuth2.0 google login
+  - OAuth2.0 facebook login
+  - OAuth2.0 github login
+  - OAuth2.0 twitter login
+  - OAuth2.0 linkedin login
+  - OAuth2.0 instagram login
 
 #### Monitoring & Metrics
 - [ ] Add Spring Boot Actuator
@@ -61,13 +66,6 @@ A modern full-stack application template with TypeScript, Spring Boot, and Postg
   - Add query execution plan visualization
   - Configure query timeout handling
 
-#### API Documentation
-- [ ] Enhance OpenAPI documentation
-  - Add security schemes
-  - Add detailed API descriptions
-  - Configure response examples
-  - Add operation tags
-
 #### Testing
 - [ ] Add integration tests
   - Configure test containers
@@ -94,16 +92,8 @@ A modern full-stack application template with TypeScript, Spring Boot, and Postg
   - Implement nested routes
   - Add route-based code splitting
 
-#### UI Components
-- [ ] Add component library
-  - Add `@headlessui/react` for accessible components
-  - Add `@heroicons/react` for icons
-  - Implement form components with `react-hook-form`
-  - Add toast notifications with `react-hot-toast`
-
 #### Authentication
 - [ ] Implement authentication flow
-  - Configure Axios with `withCredentials: true`
   - Implement login/logout
   - Add protected routes
   - Add session management
