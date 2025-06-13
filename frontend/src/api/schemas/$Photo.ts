@@ -2,16 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $SortObject = {
+export const $Photo = {
   properties: {
-    sorted: {
-      type: 'boolean',
-    },
-    unsorted: {
-      type: 'boolean',
-    },
-    empty: {
-      type: 'boolean',
+    thumb: {
+      type: 'string',
     },
   },
 } as const;

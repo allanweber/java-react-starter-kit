@@ -2,21 +2,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $Pageable = {
+export const $FoodClientResponse = {
   properties: {
-    page: {
-      type: 'number',
-      format: 'int32',
-    },
-    size: {
-      type: 'number',
-      format: 'int32',
-      minimum: 1,
-    },
-    sort: {
+    common: {
       type: 'array',
       contains: {
-        type: 'string',
+        type: 'FoodInstantResponse',
+      },
+    },
+    branded: {
+      type: 'array',
+      contains: {
+        type: 'FoodInstantResponse',
       },
     },
   },

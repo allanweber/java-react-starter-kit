@@ -3,9 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Food } from '../models/Food';
+import type { FoodClientResponse } from '../models/FoodClientResponse';
 import type { FoodRequest } from '../models/FoodRequest';
-import type { Pageable } from '../models/Pageable';
-import type { PageFood } from '../models/PageFood';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -69,17 +68,6 @@ export class FoodsService {
     });
   }
   /**
-   * Get all foods
-   * @returns Food OK
-   * @throws ApiError
-   */
-  public static getAllFoods(): CancelablePromise<Array<Food>> {
-    return __request(OpenAPI, {
-      method: 'GET',
-      url: '/api/v1/foods',
-    });
-  }
-  /**
    * Create a new food
    * @returns Food Created
    * @throws ApiError
@@ -98,49 +86,19 @@ export class FoodsService {
   }
   /**
    * Search foods by name or description
-   * @returns PageFood OK
+   * @returns FoodClientResponse OK
    * @throws ApiError
    */
   public static searchFoods({
     query,
-    page,
-    size = 10,
-    sortBy = 'name',
-    direction = 'asc',
   }: {
     query: string,
-    page?: number,
-    size?: number,
-    sortBy?: string,
-    direction?: string,
-  }): CancelablePromise<PageFood> {
+  }): CancelablePromise<FoodClientResponse> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/v1/foods/search',
       query: {
         'query': query,
-        'page': page,
-        'size': size,
-        'sortBy': sortBy,
-        'direction': direction,
-      },
-    });
-  }
-  /**
-   * Get all foods with pagination
-   * @returns PageFood OK
-   * @throws ApiError
-   */
-  public static findAll({
-    pageable,
-  }: {
-    pageable: Pageable,
-  }): CancelablePromise<PageFood> {
-    return __request(OpenAPI, {
-      method: 'GET',
-      url: '/api/v1/foods/page',
-      query: {
-        'pageable': pageable,
       },
     });
   }

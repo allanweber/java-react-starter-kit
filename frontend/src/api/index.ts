@@ -8,17 +8,15 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Food } from './models/Food';
+export type { FoodClientResponse } from './models/FoodClientResponse';
+export type { FoodInstantResponse } from './models/FoodInstantResponse';
 export type { FoodRequest } from './models/FoodRequest';
-export type { Pageable } from './models/Pageable';
-export type { PageableObject } from './models/PageableObject';
-export type { PageFood } from './models/PageFood';
-export type { SortObject } from './models/SortObject';
+export type { Photo } from './models/Photo';
 
 export { $Food } from './schemas/$Food';
+export { $FoodClientResponse } from './schemas/$FoodClientResponse';
+export { $FoodInstantResponse } from './schemas/$FoodInstantResponse';
 export { $FoodRequest } from './schemas/$FoodRequest';
-export { $Pageable } from './schemas/$Pageable';
-export { $PageableObject } from './schemas/$PageableObject';
-export { $PageFood } from './schemas/$PageFood';
-export { $SortObject } from './schemas/$SortObject';
+export { $Photo } from './schemas/$Photo';
 
 export { FoodsService } from './services/FoodsService';

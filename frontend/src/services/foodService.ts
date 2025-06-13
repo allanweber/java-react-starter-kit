@@ -1,30 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import { PageFood } from '../api/models/PageFood';
+import { FoodClientResponse } from '../api/models/FoodClientResponse';
 import { FoodsService } from '../api/services/FoodsService';
 
 interface SearchFoodsParams {
   query: string;
-  page: number;
-  size?: number;
-  sortBy?: string;
-  direction?: string;
 }
 
 export const useSearchFoods = ({
   query,
-  page,
-  size = 10,
-  sortBy = 'name',
-  direction = 'asc',
 }: SearchFoodsParams) => {
-  return useQuery<PageFood, Error>({
-    queryKey: ['foods', 'search', query, page, size, sortBy, direction],
+  return useQuery<FoodClientResponse, Error>({
+    queryKey: ['foods', 'search', query],
     queryFn: () => FoodsService.searchFoods({
       query,
-      page,
-      size,
-      sortBy,
-      direction,
     }),
     enabled: query.length > 0,
   });

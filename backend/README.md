@@ -30,6 +30,11 @@ This is the backend project for the starter kit, built with Spring Boot, JPA, an
    mvn spring-boot:run -Dspring-boot.run.profiles=local
    ```
 
+   or with food configuration
+   ```
+   mvn spring-boot:run -Dspring.profiles.active=local -Dspring-boot.run.arguments=--FOOD_APP_ID=<FOOD_APP_ID> --FOOD_APP_KEY=<FOOD_APP_KEY>
+   ```
+
 4. Access the OpenAPI documentation:
    - Swagger UI: http://localhost:8080/swagger-ui/index.html
    - OpenAPI JSON: http://localhost:8080/api-docs
