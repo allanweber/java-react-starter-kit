@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FoodInstantResponse } from '../api/models/FoodInstantResponse'
 import { useSearchFoods } from '../services/foodService'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 
 interface FoodSearchProps {
   onFoodSelect?: (food: FoodInstantResponse) => void
@@ -10,6 +11,7 @@ export function FoodSearch ({ onFoodSelect }: FoodSearchProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
   const [showLoading, setShowLoading] = useState(false)
+  const [tab, setTab] = useState('common')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -35,46 +37,54 @@ export function FoodSearch ({ onFoodSelect }: FoodSearchProps) {
     return () => clearTimeout(loadingTimer)
   }, [isLoading])
 
+  // Automatically switch to 'branded' tab if no common foods but branded foods exist
+  useEffect(() => {
+    if (data) {
+      const hasCommon = data.common && data.common.length > 0
+      const hasBranded = data.branded && data.branded.length > 0
+      if (!hasCommon && hasBranded && tab !== 'branded') {
+        setTab('branded')
+      } else if (hasCommon && tab !== 'common') {
+        setTab('common')
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   }
 
-  const renderFoodSection = (
-    title: string,
-    foods: FoodInstantResponse[] | undefined
-  ) => {
-    if (!foods || foods.length === 0) return null
-
+  const renderFoodList = (foods: FoodInstantResponse[] | undefined) => {
+    if (!foods || foods.length === 0)
+      return <p className='text-gray-500 text-center'>No foods found</p>
     return (
-      <div className='mt-6'>
-        <h2 className='text-xl font-semibold mb-3'>{title}</h2>
-        <div className='space-y-2'>
-          {foods.map(food => (
-            <div
-              key={food.tag_id || food.nix_item_id}
-              className='p-4 border border-gray-200 rounded-lg hover:bg-gray-50 hover:shadow-md hover:border-gray-300 cursor-pointer transition-all duration-200 ease-in-out'
-              onClick={() => onFoodSelect?.(food)}
-            >
-              <div className='flex items-center gap-4'>
-                {food.photo?.thumb && (
-                  <img
-                    src={food.photo.thumb}
-                    alt={food.food_name}
-                    className='w-12 h-12 object-contain rounded bg-white'
-                  />
+      <div className='space-y-2'>
+        {foods.map(food => (
+          <div
+            key={food.tag_id || food.nix_item_id}
+            className='p-4 border border-gray-200 rounded-lg hover:bg-gray-50 hover:shadow-md hover:border-gray-300 cursor-pointer transition-all duration-200 ease-in-out'
+            onClick={() => onFoodSelect?.(food)}
+          >
+            <div className='flex items-center gap-4'>
+              {food.photo?.thumb && (
+                <img
+                  src={food.photo.thumb}
+                  alt={food.food_name}
+                  className='w-12 h-12 object-contain rounded bg-white'
+                />
+              )}
+              <div className='flex-grow'>
+                <h3 className='font-medium'>{food.food_name}</h3>
+                {food.nf_calories && (
+                  <p className='text-sm text-gray-600'>
+                    {food.nf_calories} calories
+                  </p>
                 )}
-                <div className='flex-grow'>
-                  <h3 className='font-medium'>{food.food_name}</h3>
-                  {food.nf_calories && (
-                    <p className='text-sm text-gray-600'>
-                      {food.nf_calories} calories
-                    </p>
-                  )}
-                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     )
   }
@@ -101,18 +111,37 @@ export function FoodSearch ({ onFoodSelect }: FoodSearchProps) {
       )}
 
       <div className='mt-4'>
-        {data ? (
-          <>
-            {renderFoodSection('Common Foods', data.common)}
-            {renderFoodSection('Branded Foods', data.branded)}
-            {(!data.common || data.common.length === 0) &&
-              (!data.branded || data.branded.length === 0) &&
-              debouncedSearchTerm &&
-              !isLoading && (
-                <p className='text-gray-500 text-center'>No foods found</p>
-              )}
-          </>
-        ) : null}
+        {data &&
+        ((data.common && data.common.length > 0) ||
+          (data.branded && data.branded.length > 0)) ? (
+          <Tabs value={tab} onValueChange={setTab} className='w-full'>
+            <TabsList className='mb-4 bg-gray-100 rounded-lg p-1 flex gap-2'>
+              <TabsTrigger
+                value='common'
+                className='data-[state=active]:bg-white data-[state=active]:font-bold data-[state=active]:shadow data-[state=active]:text-blue-600 px-4 py-2 rounded-md transition-colors'
+              >
+                Common Foods
+              </TabsTrigger>
+              <TabsTrigger
+                value='branded'
+                className='data-[state=active]:bg-white data-[state=active]:font-bold data-[state=active]:shadow data-[state=active]:text-blue-600 px-4 py-2 rounded-md transition-colors'
+              >
+                Branded Foods
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value='common'>
+              {renderFoodList(data.common)}
+            </TabsContent>
+            <TabsContent value='branded'>
+              {renderFoodList(data.branded)}
+            </TabsContent>
+          </Tabs>
+        ) : (
+          debouncedSearchTerm &&
+          !isLoading && (
+            <p className='text-gray-500 text-center'>No foods found</p>
+          )
+        )}
       </div>
     </div>
   )
