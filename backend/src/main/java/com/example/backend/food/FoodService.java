@@ -1,9 +1,12 @@
 package com.example.backend.food;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.backend.food.client.FoodClient;
 import com.example.backend.food.client.FoodClientResponse;
+import com.example.backend.food.entity.Food;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,9 +16,11 @@ public class FoodService {
 
     private final FoodClient foodClient;
 
-    public FoodClientResponse getFood(String foodName) {
-        FoodClientResponse foodClientResponse = foodClient.getFood(foodName);
+    public FoodClientResponse searchFood(String foodName) {
+        return foodClient.getFood(foodName);
+    }
 
-        return foodClientResponse;
+    public Optional<Food> getFood(String name) {
+        throw new UnsupportedOperationException("Unimplemented method 'getFood'");
     }
 }
