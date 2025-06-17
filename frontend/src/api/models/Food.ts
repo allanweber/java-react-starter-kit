@@ -2,6 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AltMeasure } from './AltMeasure';
+import type { FullNutrient } from './FullNutrient';
 export type Food = {
   id?: string;
   name: string;
@@ -15,6 +17,8 @@ export type Food = {
   sodiumPer100g: number;
   servingSizeG: number;
   servingSizeUnit?: string;
+  fullNutrients?: Array<FullNutrient>;
+  altMeasures?: Array<AltMeasure>;
   createdAt?: string;
   updatedAt?: string;
   image_url?: string;

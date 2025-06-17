@@ -2,16 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $Photo = {
+export const $FullNutrient = {
   properties: {
-    thumb: {
-      type: 'string',
+    value: {
+      type: 'number',
+      format: 'double',
     },
-    highres: {
-      type: 'string',
-    },
-    is_user_uploaded: {
-      type: 'boolean',
+    attr_id: {
+      type: 'number',
+      format: 'int32',
     },
   },
 } as const;

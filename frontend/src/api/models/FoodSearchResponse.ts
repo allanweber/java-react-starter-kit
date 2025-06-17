@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { FoodInstantResponse } from './FoodInstantResponse';
-export type FoodClientResponse = {
+export type FoodSearchResponse = {
   common?: Array<FoodInstantResponse>;
   branded?: Array<FoodInstantResponse>;
 };

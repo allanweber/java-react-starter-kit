@@ -2,6 +2,7 @@ package com.example.backend.food.config;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -28,6 +29,7 @@ public class FoodConfigurationTest {
     private FoodConfigurationProperties foodConfiguration;
 
     @Test
+    @DisplayName("Given food configuration properties, when loading configuration, then should load all properties correctly")
     void shouldLoadConfigurationProperties() {
         assertThat(foodConfiguration).isNotNull();
         assertThat(foodConfiguration.getAppId()).isEqualTo("test-app-id");

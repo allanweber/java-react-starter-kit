@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Food } from '../models/Food';
-import type { FoodClientResponse } from '../models/FoodClientResponse';
+import type { FoodSearchResponse } from '../models/FoodSearchResponse';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -21,14 +21,14 @@ export class FoodsService {
   }
   /**
    * Search foods by name or description
-   * @returns FoodClientResponse OK
+   * @returns FoodSearchResponse OK
    * @throws ApiError
    */
   public static searchFoods({
     query,
   }: {
     query: string,
-  }): CancelablePromise<FoodClientResponse> {
+  }): CancelablePromise<FoodSearchResponse> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/v1/foods/search',

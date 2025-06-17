@@ -2,16 +2,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $Photo = {
+export const $AltMeasure = {
   properties: {
-    thumb: {
+    measure: {
       type: 'string',
     },
-    highres: {
-      type: 'string',
+    qty: {
+      type: 'number',
+      format: 'double',
     },
-    is_user_uploaded: {
-      type: 'boolean',
+    serving_weight: {
+      type: 'number',
+      format: 'double',
     },
   },
 } as const;

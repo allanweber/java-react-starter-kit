@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.food.FoodService;
-import com.example.backend.food.client.FoodClientResponse;
+import com.example.backend.food.client.data.FoodSearchResponse;
 import com.example.backend.food.entity.Food;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,7 +28,7 @@ public class FoodController {
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Search foods by name or description")
-    public FoodClientResponse searchFoods(
+    public FoodSearchResponse searchFoods(
             @RequestParam String query) {
         return foodService.searchFood(query);
     }

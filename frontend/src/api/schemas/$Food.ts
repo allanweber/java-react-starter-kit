@@ -52,6 +52,18 @@ export const $Food = {
       type: 'string',
       maxLength: 50,
     },
+    fullNutrients: {
+      type: 'array',
+      contains: {
+        type: 'FullNutrient',
+      },
+    },
+    altMeasures: {
+      type: 'array',
+      contains: {
+        type: 'AltMeasure',
+      },
+    },
     createdAt: {
       type: 'string',
       format: 'date-time',

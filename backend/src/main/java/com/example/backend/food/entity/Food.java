@@ -2,14 +2,18 @@ package com.example.backend.food.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.backend.food.client.data.AltMeasure;
+import com.example.backend.food.client.data.FullNutrient;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -85,6 +89,14 @@ public class Food {
     @Column(name = "image_url")
     @JsonProperty("image_url")
     private String imageUrl;
+
+    @Convert(converter = FullNutrientsConverter.class)
+    @Column(name = "full_nutrients", columnDefinition = "jsonb")
+    private List<FullNutrient> fullNutrients;
+
+    @Convert(converter = AltMeasuresConverter.class)
+    @Column(name = "alt_measures", columnDefinition = "jsonb")
+    private List<AltMeasure> altMeasures;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

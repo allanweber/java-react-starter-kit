@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $FoodClientResponse = {
+export const $FoodSearchResponse = {
   properties: {
     common: {
       type: 'array',

@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Photo = {
-  thumb?: string;
-  highres?: string;
-  is_user_uploaded?: boolean;
+export type FullNutrient = {
+  value?: number;
+  attr_id?: number;
 };
 

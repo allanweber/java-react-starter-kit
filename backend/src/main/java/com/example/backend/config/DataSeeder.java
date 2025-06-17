@@ -40,8 +40,7 @@ public class DataSeeder {
             }
 
             try {
-                Resource[] resources = new PathMatchingResourcePatternResolver()
-                        .getResources("classpath:data/*.json");
+                Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath:data/*.json");
 
                 for (Resource resource : resources) {
                     String filename = resource.getFilename();

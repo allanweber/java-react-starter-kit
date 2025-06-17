@@ -1,4 +1,4 @@
-package com.example.backend.food.client;
+package com.example.backend.food.client.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,10 +22,4 @@ public class FoodInstantResponse {
 
     @JsonProperty("nix_item_id")
     private String nixItemId;
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    @Data
-    public static class Photo {
-        private String thumb;
-    }
 }
