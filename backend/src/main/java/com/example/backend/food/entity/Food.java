@@ -3,17 +3,17 @@ package com.example.backend.food.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import com.example.backend.food.client.data.AltMeasure;
 import com.example.backend.food.client.data.FullNutrient;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,8 +30,8 @@ import lombok.Data;
 @Table(name = "foods")
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank
     @Size(max = 255)
@@ -90,12 +90,12 @@ public class Food {
     @JsonProperty("image_url")
     private String imageUrl;
 
-    @Convert(converter = FullNutrientsConverter.class)
-    @Column(name = "full_nutrients", columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "full_nutrients", columnDefinition = "jsonb", nullable = true)
     private List<FullNutrient> fullNutrients;
 
-    @Convert(converter = AltMeasuresConverter.class)
-    @Column(name = "alt_measures", columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "alt_measures", columnDefinition = "jsonb", nullable = true)
     private List<AltMeasure> altMeasures;
 
     @CreationTimestamp

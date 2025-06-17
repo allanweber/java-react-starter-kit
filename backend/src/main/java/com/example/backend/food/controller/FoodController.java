@@ -35,8 +35,8 @@ public class FoodController {
 
     @GetMapping("/{food}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Get food by ID")
-    public ResponseEntity<Food> getFoodById(@PathVariable String name) {
+    @Operation(summary = "Get food by name")
+    public ResponseEntity<Food> getFoodByName(@PathVariable(name = "food") String name) {
         return foodService.getFood(name)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

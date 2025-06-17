@@ -5,8 +5,8 @@
 export const $Food = {
   properties: {
     id: {
-      type: 'string',
-      format: 'uuid',
+      type: 'number',
+      format: 'int64',
     },
     name: {
       type: 'string',

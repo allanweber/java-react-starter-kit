@@ -5,7 +5,7 @@
 import type { AltMeasure } from './AltMeasure';
 import type { FullNutrient } from './FullNutrient';
 export type Food = {
-  id?: string;
+  id?: number;
   name: string;
   description?: string;
   caloriesPer100g: number;

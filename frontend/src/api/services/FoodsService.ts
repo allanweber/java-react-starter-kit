@@ -9,14 +9,21 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class FoodsService {
   /**
-   * Get food by ID
+   * Get food by name
    * @returns Food OK
    * @throws ApiError
    */
-  public static getFoodById(): CancelablePromise<Food> {
+  public static getFoodByName({
+    food,
+  }: {
+    food: string,
+  }): CancelablePromise<Food> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/v1/foods/{food}',
+      path: {
+        'food': food,
+      },
     });
   }
   /**
