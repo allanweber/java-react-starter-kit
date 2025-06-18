@@ -1,19 +1,12 @@
-import { useGetFoodByName } from '@/services/foodService'
-import { useState } from 'react'
+import { useNavigate } from '@tanstack/react-router'
 import { FoodInstantResponse } from '../api/models/FoodInstantResponse'
 import { FoodSearch } from '../components/FoodSearch'
 
 export function FoodSearchPage () {
-  const [selectedFoodName, setSelectedFoodName] = useState<string>('')
-  const { data } = useGetFoodByName({
-    name: selectedFoodName
-  })
+  const navigate = useNavigate()
 
   const handleFoodSelect = (food: FoodInstantResponse) => {
-    setSelectedFoodName(food.food_name!)
-    if (data) {
-      console.log('Food:', data)
-    }
+    navigate({ to: '/food/$food', params: { food: food.food_name! } })
   }
 
   return (
