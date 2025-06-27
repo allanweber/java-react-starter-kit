@@ -1,10 +1,20 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { RouterProvider } from '@tanstack/react-router'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { router } from './router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createRouter, RouterProvider } from '@tanstack/react-router';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { routeTree } from './routeTree.gen';
+
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,14 +26,13 @@ const queryClient = new QueryClient({
       retry: (failureCount, error: any) => {
         // Only retry on network errors or 5xx server errors
         if (error?.status >= 500 || error?.message === 'Network Error') {
-          
           return failureCount < 2; // Retry up to 2 times
         }
         return false; // Don't retry for other errors
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -32,4 +41,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
-)
+);
